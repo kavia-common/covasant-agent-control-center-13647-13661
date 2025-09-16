@@ -1,82 +1,66 @@
-# Lightweight React Template for KAVIA
+# Covasant Agent Control Tower - Frontend (React)
 
-This project provides a minimal React template with a clean, modern UI and minimal dependencies.
+A centralized UI to monitor, manage, and control Covasant agents via REST APIs.
 
 ## Features
 
-- **Lightweight**: No heavy UI frameworks - uses only vanilla CSS and React
-- **Modern UI**: Clean, responsive design with KAVIA brand styling
-- **Fast**: Minimal dependencies for quick loading times
-- **Simple**: Easy to understand and modify
+- Agents list with status and quick actions
+- Agent details: status, metadata, and controls (start/stop/restart/pause/resume)
+- Activity logs viewer with filters and pagination
+- Dashboard with aggregate metrics and alerts
+- Light/Dark theme toggle
+- API client with environment-based configuration
 
-## Getting Started
+## Configuration
 
-In the project directory, you can run:
+Copy `.env.example` to `.env` and set the API base URL:
 
-### `npm start`
-
-Runs the app in development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
-
-### `npm test`
-
-Launches the test runner in interactive watch mode.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-## Customization
-
-### Colors
-
-The main brand colors are defined as CSS variables in `src/App.css`:
-
-```css
-:root {
-  --kavia-orange: #E87A41;
-  --kavia-dark: #1A1A1A;
-  --text-color: #ffffff;
-  --text-secondary: rgba(255, 255, 255, 0.7);
-  --border-color: rgba(255, 255, 255, 0.1);
-}
+```
+REACT_APP_API_BASE_URL=https://your-api-base
+REACT_APP_API_TIMEOUT_MS=10000
 ```
 
-### Components
+Do not commit secrets. Environment variables are injected at build time.
 
-This template uses pure HTML/CSS components instead of a UI framework. You can find component styles in `src/App.css`. 
+## Development
 
-Common components include:
-- Buttons (`.btn`, `.btn-large`)
-- Container (`.container`)
-- Navigation (`.navbar`)
-- Typography (`.title`, `.subtitle`, `.description`)
+Install dependencies and start:
 
-## Learn More
+```
+npm install
+npm start
+```
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+Open http://localhost:3000 to view it.
 
-### Code Splitting
+## Testing
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+```
+npm test
+```
 
-### Analyzing the Bundle Size
+## Build
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+```
+npm run build
+```
 
-### Making a Progressive Web App
+## Structure
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+- `src/services/api.js` — API client (fetch-based)
+- `src/context/AppContext.js` — Theme and API context
+- `src/components` — Reusable UI components
+- `src/pages` — App pages: Agents, Agent Details, Logs, Dashboard
+- `src/App.js` — Routing and layout
 
-### Advanced Configuration
+## Notes
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+- This frontend expects a backend exposing REST endpoints:
+  - GET /agents
+  - GET /agents/:id
+  - GET /agents/:id/status
+  - POST /agents/:id/commands { command, payload? }
+  - GET /agents/:id/logs?limit=&level=&since=&until=&cursor=
+  - GET /dashboard
 
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Adjust `src/services/api.js` if your endpoints differ.

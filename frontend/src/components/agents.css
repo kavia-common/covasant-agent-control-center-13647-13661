@@ -1,0 +1,25 @@
+.agents-grid {
+  display: grid;
+  gap: 12px;
+  grid-template-columns: repeat(1, minmax(0, 1fr));
+}
+@media (min-width: 640px) {
+  .agents-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (min-width: 1024px) {
+  .agents-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+
+.agent-item {
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 12px;
+  background: var(--bg-primary);
+}
+
+.agent-top { display: flex; flex-direction: column; gap: 6px; }
+.agent-title { display: flex; align-items: center; gap: 8px; }
+.agent-meta { display: flex; gap: 12px; color: var(--text-muted); font-size: 12px; }
+.agent-actions { display: flex; gap: 8px; margin-top: 10px; }
+.m-0 { margin: 0; }
+.mt-2 { margin-top: 8px; }

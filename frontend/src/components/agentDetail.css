@@ -1,0 +1,23 @@
+.detail-grid {
+  display: grid;
+  gap: 12px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+@media (min-width: 768px) {
+  .detail-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+.label { color: var(--text-muted); font-size: 12px; }
+.value { font-weight: 600; }
+.mono { font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; }
+
+.controls { display: flex; gap: 8px; flex-wrap: wrap; }
+
+.logs ul { list-style: none; padding: 0; margin: 0; }
+.logs li { display: grid; grid-template-columns: 80px 180px 1fr; gap: 10px; padding: 6px 0; border-bottom: 1px solid var(--border); }
+.log-level { font-size: 12px; border-radius: 6px; padding: 2px 6px; text-align: center; }
+.log-info { background: rgba(59,130,246,0.15); color: #60a5fa; }
+.log-warning { background: rgba(245,158,11,0.15); color: #f59e0b; }
+.log-error { background: rgba(239,68,68,0.15); color: #ef4444; }
+.log-debug { background: rgba(148,163,184,0.15); color: #94a3b8; }
+.log-time { color: var(--text-muted); font-size: 12px; }
+.log-msg { white-space: pre-wrap; }

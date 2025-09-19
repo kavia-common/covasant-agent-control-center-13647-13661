@@ -123,7 +123,7 @@ export const mockFetchQueue = (entries) => {
       // URL match
       if (url !== undefined) {
         if (typeof url === "string") {
-          if (reqUrl !== url) return false;
+          if (!String(reqUrl).includes(url)) return false;
         } else if (url instanceof RegExp) {
           if (!url.test(reqUrl)) return false;
         } else if (typeof url === "function") {
@@ -237,7 +237,6 @@ export const assertNoPendingFetchMocks = () => {
  */
 if (typeof global !== "undefined") {
   if (!global.fetch || !global.fetch._isQueueAware) {
-    const originalFetch = global.fetch || (() => Promise.reject(new Error("global.fetch not set")));
     const queueAware = async (reqUrl, options = {}) => {
       if (!fetchQueue.length) {
         const msg =

@@ -29,47 +29,70 @@
 body {
   background: var(--bg-primary);
   color: var(--text-primary);
+  margin: 0;
 }
 
-.nav {
+/* App shell with sidebar */
+.app-shell {
+  display: grid;
+  grid-template-columns: 240px 1fr;
+  min-height: 100vh;
+}
+
+.sidebar {
   position: sticky;
   top: 0;
-  z-index: 30;
+  align-self: start;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  background: var(--bg-secondary);
+  border-right: 1px solid var(--border);
+  padding: 16px 12px;
+}
+
+.sidebar-brand .brand {
+  font-weight: 800;
+  color: var(--text-primary);
+}
+
+.sidebar-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-top: 10px;
+}
+
+.side-link {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  padding: 14px 18px;
-  background: var(--bg-secondary);
-  border-bottom: 1px solid var(--border);
-}
-
-.brand {
-  font-weight: 700;
-  margin-right: 18px;
-  color: var(--text-primary);
-  text-decoration: none;
-}
-
-.nav-left { display: flex; align-items: center; gap: 12px; }
-
-.nav-link {
+  gap: 8px;
+  padding: 10px 12px;
   color: var(--text-muted);
+  border-radius: 8px;
   text-decoration: none;
-  padding: 6px 10px;
-  border-radius: 6px;
 }
-
-.nav-link.active, .nav-link:hover {
+.side-link:hover,
+.side-link.active {
   background: var(--border);
   color: var(--text-primary);
 }
 
-.nav-right .btn { margin-left: 8px; }
+.sidebar-footer {
+  margin-top: auto;
+}
 
+.w-full { width: 100%; }
+
+.main {
+  padding: 24px 16px;
+}
+
+/* Cards, buttons, badges, etc. */
 .container {
   max-width: 1200px;
-  margin: 24px auto;
-  padding: 0 16px;
+  margin: 0 auto;
 }
 
 .card {
@@ -142,4 +165,28 @@ body {
 .empty {
   text-align: center;
   color: var(--text-muted);
+}
+
+/* Responsive: collapse sidebar into top stacked layout on small screens */
+@media (max-width: 900px) {
+  .app-shell {
+    grid-template-columns: 1fr;
+  }
+  .sidebar {
+    position: static;
+    height: auto;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px;
+  }
+  .sidebar-nav {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 0;
+  }
+  .main {
+    padding-top: 12px;
+  }
 }

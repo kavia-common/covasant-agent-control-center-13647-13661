@@ -3,33 +3,46 @@ import { Link, NavLink } from "react-router-dom";
 import { useApp } from "../context/AppContext";
 import "./layout.css";
 
-export const Navbar = () => {
+/**
+ * Sidebar layout container with persistent navigation on the left
+ * and a scrollable main content area on the right.
+ */
+export const SidebarLayout = ({ children }) => {
   const { theme, toggleTheme } = useApp();
   return (
-    <nav className="nav">
-      <div className="nav-left">
-        <Link to="/" className="brand">
-          Covasant Control Tower
-        </Link>
-        <NavLink to="/agents" className={({ isActive }) => (isActive ? "nav-link active" : "nav-link")}>
-          Agents
-        </NavLink>
-        <NavLink to="/dashboard" className={({ isActive }) => (isActive ? "nav-link active" : "nav-link")}>
-          Dashboard
-        </NavLink>
-      </div>
-      <div className="nav-right">
-        <button className="btn" onClick={toggleTheme} aria-label="Toggle theme">
-          {theme === "light" ? "🌙 Dark" : "☀️ Light"}
-        </button>
-      </div>
-    </nav>
+    <div className="app-shell">
+      <aside className="sidebar">
+        <div className="sidebar-brand">
+          <Link to="/" className="brand">
+            Covasant Control Tower
+          </Link>
+        </div>
+        <nav className="sidebar-nav">
+          <NavLink to="/dashboard" className={({ isActive }) => (isActive ? "side-link active" : "side-link")}>
+            <span className="icon">📊</span> Dashboard
+          </NavLink>
+          <NavLink to="/agents" className={({ isActive }) => (isActive ? "side-link active" : "side-link")}>
+            <span className="icon">🤖</span> Agents
+          </NavLink>
+          <NavLink to="/agents/example/logs" className={({ isActive }) => (isActive ? "side-link active" : "side-link")}>
+            <span className="icon">📜</span> Logs
+          </NavLink>
+          <NavLink to="/settings" className={({ isActive }) => (isActive ? "side-link active" : "side-link")}>
+            <span className="icon">⚙️</span> Settings
+          </NavLink>
+        </nav>
+        <div className="sidebar-footer">
+          <button className="btn btn-secondary w-full" onClick={toggleTheme} aria-label="Toggle theme">
+            {theme === "light" ? "🌙 Dark mode" : "☀️ Light mode"}
+          </button>
+        </div>
+      </aside>
+      <main className="main">{children}</main>
+    </div>
   );
 };
 
-export const Container = ({ children }) => (
-  <div className="container">{children}</div>
-);
+export const Container = ({ children }) => <div className="container">{children}</div>;
 
 export const Card = ({ title, subtitle, footer, children, right }) => (
   <div className="card">

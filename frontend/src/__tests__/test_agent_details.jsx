@@ -1,7 +1,7 @@
 import React from "react";
 import { act, fireEvent, screen } from "@testing-library/react";
 import App from "../App";
-import { renderWithAppProvider, mockFetchOnce } from "./test-utils";
+import { renderWithAppProvider, mockFetchOnce } from "../testing/test-utils";
 
 describe("AgentDetailsPage & AgentDetail", () => {
   beforeEach(() => {

@@ -1,7 +1,7 @@
 import React from "react";
 import { screen, fireEvent, waitFor } from "@testing-library/react";
 import App from "../App";
-import { renderWithAppProvider, mockFetchOnce } from "./test-utils";
+import { renderWithAppProvider, mockFetchOnce } from "../testing/test-utils";
 
 describe("App routing and sidebar navigation", () => {
   beforeEach(() => {

@@ -7,11 +7,9 @@ import '@testing-library/jest-dom';
 
 // Prevent real network calls; each test should mock fetch as needed.
 beforeAll(() => {
-  if (!global.fetch) {
-    global.fetch = jest.fn();
-  }
+  global.fetch = jest.fn();
 });
 
 afterEach(() => {
-  if (global.fetch?.mockClear) global.fetch.mockClear();
+  jest.clearAllMocks();
 });

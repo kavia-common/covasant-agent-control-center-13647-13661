@@ -1,7 +1,7 @@
 import React from "react";
 import { screen } from "@testing-library/react";
 import App from "../App";
-import { renderWithAppProvider, mockFetchOnce } from "./test-utils";
+import { renderWithAppProvider, mockFetchOnce } from "../testing/test-utils";
 
 describe("DashboardPage", () => {
   test("shows loader then renders dashboard summary sections", async () => {
